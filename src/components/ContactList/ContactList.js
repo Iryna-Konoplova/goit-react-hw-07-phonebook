@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 // Компоненты
 import ContactListItem from '../ContactListItem/ContactListItem';
-// import contactsAction from '../../redux/contacts/contacts-action';
-import * as contactsAction from '../../redux/contacts/contacts-action';
+import contactsOperations from '../../redux/contacts/contacts-operations';
 import { getVisibleContacts } from '../../redux/contacts/contacts-selectors';
 
 // Стили
@@ -15,7 +14,7 @@ import styles from '../ContactList/contactList.module.css';
 const ContactList = () => {
   const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
-  const onDeletContact = id => dispatch(contactsAction.deleteContact(id))
+  const onDeletContact = id => dispatch(contactsOperations.deleteContact(id))
 
   return (
   <ul className={styles.contactList}>

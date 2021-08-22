@@ -10,6 +10,7 @@ import store from './redux/store'
 
 // Стили
 import 'modern-normalize/modern-normalize.css';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 
 ReactDOM.render(

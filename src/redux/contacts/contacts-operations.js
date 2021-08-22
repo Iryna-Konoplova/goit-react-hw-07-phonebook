@@ -1,9 +1,30 @@
 // Модули
 import axios from 'axios';
-// import actions from './contacts-action';
-import {addContactRequest, addContactSuccess, addContactError,} from './contacts-action';
+
+// Компоненты
+import {
+    addContactRequest,
+    addContactSuccess,
+    addContactError,
+    deleteContactRequest,
+    deleteContactSuccess,
+    deleteContactError,
+    fetchContactsRequest,
+    fetchContactsSuccess,
+    fetchContactsError,
+} from './contacts-action';
+
 
 axios.defaults.baseURL = 'http://localhost:3000';
+
+const fetchContacts = () => dispatch => {
+    dispatch(fetchContactsRequest());
+
+    axios
+        .get('/contacts')
+        .then(({ data }) => dispatch(fetchContactsSuccess(data)))
+        .catch(error => dispatch(fetchContactsError(error)));
+};
 
 const addContact = ({ name, number }) => dispatch => {
     const contact = {
@@ -19,8 +40,18 @@ const addContact = ({ name, number }) => dispatch => {
         .catch(error => dispatch(addContactError(error)));
 };
 
+const deleteContact = contactId => dispatch => {
+    dispatch(deleteContactRequest());
+    
+    axios
+        .delete(`/contacts/${contactId}`)
+        .then(({ data }) => dispatch(deleteContactSuccess(contactId)))
+        .catch(error => dispatch(deleteContactError(error)));
+};
 
 // eslint-disable-next-line
 export default {
+    fetchContacts,
     addContact,
+    deleteContact,
 };

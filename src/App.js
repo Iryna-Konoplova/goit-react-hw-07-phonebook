@@ -1,27 +1,34 @@
+// Модули
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from 'react';
+
 // Компоненты
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
+import contactsOperations from './redux/contacts/contacts-operations';
+import Loader from "react-loader-spinner";
+import {isContactLoading } from './redux/contacts/contacts-selectors';
 
 // Стили
 import styles from './App.module.css';
 
 
-// const defaultContacts = [
-//   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-//   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-//   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-//   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-// ];
-
-
 const App = () => {
+  const isLoadingContacts = useSelector(isContactLoading);
+  const dispatch = useDispatch();
+ 
+  useEffect(() => {
+    dispatch(contactsOperations.fetchContacts());
+  }, [dispatch]);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Phonebook</h1>
       <ContactForm  />
       <h2 className={styles.subtitle}>Contacts</h2>
-      <Filter />  
+      <Filter />
+       {isLoadingContacts && <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />}
       <ContactList />
     </div>
   );
