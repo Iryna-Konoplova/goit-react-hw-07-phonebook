@@ -1,50 +1,23 @@
 // Модули
-import shortid from 'shortid';
 import { createAction } from '@reduxjs/toolkit';
 
 
-const addContact = createAction('contacts/add', ({ name, number }) => ({
-    payload: {
-        id: shortid.generate(),
-        name,
-        number,
-    }, 
-}));
+export const addContactRequest = createAction('contacts/addContactRequest');
+export const addContactSuccess = createAction('contacts/addContactSuccess');
+export const addContactError = createAction('contacts/addContactError');
 
-const deleteContact = createAction('contacts/delete');
-
-const changeFilter = createAction('contacts/changeFilter');
-
-
-// eslint-disable-next-line
-export default { addContact, deleteContact, changeFilter };
-
-
-
-
-// // Redux
-
-// import types from './contacts-types';
-// import shortid from 'shortid';
-
-
-// const addContact = ({ name, number }) => ({
-//     type: types.ADD,
+// const addContact = createAction('contacts/add', ({ name, number }) => ({
 //     payload: {
 //         id: shortid.generate(),
 //         name,
 //         number,
-//     },
-// });
+//     }, 
+// }));
 
-// const deleteContact = contactId => ({
-//     type: types.DELETE,
-//     payload: contactId,
-// });
+export const deleteContact = createAction('contacts/delete');
 
-// const changeFilter = value => ({
-//     type: types.CHANGE_FILTER,
-//     payload: value,
-// })
+export const changeFilter = createAction('contacts/changeFilter');
 
-// export default { addContact, deleteContact, changeFilter };
+
+// eslint-disable-next-line
+// export default { addContactRequest, addContactSuccess, addContactError, addContact, deleteContact, changeFilter };

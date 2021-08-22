@@ -1,7 +1,7 @@
 // Модули
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import contactsAction from "../../redux/contacts/contacts-action";
+import contactsOperations from "../../redux/contacts/contacts-operations";
 import { getContacts } from '../../redux/contacts/contacts-selectors';
 
 // Стили
@@ -44,7 +44,7 @@ export default function ContactForm() {
       return;
     }
 
-    dispatch(contactsAction.addContact({name, number}))
+    dispatch(contactsOperations.addContact({name, number}))
 
     setName("");
     setNumber("");

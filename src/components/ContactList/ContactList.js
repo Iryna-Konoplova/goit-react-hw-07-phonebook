@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 // Компоненты
 import ContactListItem from '../ContactListItem/ContactListItem';
-import contactsAction from '../../redux/contacts/contacts-action';
+// import contactsAction from '../../redux/contacts/contacts-action';
+import * as contactsAction from '../../redux/contacts/contacts-action';
 import { getVisibleContacts } from '../../redux/contacts/contacts-selectors';
 
 // Стили
